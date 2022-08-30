@@ -1,8 +1,14 @@
 import { render, screen } from '@testing-library/react';
 import App from './App';
+import renderer from 'react-test-renderer'
+import GitHubCard from './__snapshots__/GitHubCard';
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
-});
+test('renders a snapshot', () => {
+  const tree = renderer.create(<App/>).toJSON()
+  expect(tree).toMatchSnapshot()
+})
+
+test('GitHubCard stapshot', () => {
+  const tree = renderer.create(<GitHubCard/>).toJSON()
+  expect(tree).toMatchSnapshot()
+}) 
